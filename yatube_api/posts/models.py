@@ -33,23 +33,19 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name='posts',
         verbose_name='Автор статьи',
-        help_text='Укажите автора статьи',
     )
     text = models.TextField(
         verbose_name='Текст статьи',
-        help_text='Введите текст статьи',
     )
     pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата публикации',
-        help_text='Укажите дату публикации',
     )
     image = models.ImageField(
         upload_to='posts/',
         null=True,
         blank=True,
         verbose_name='Картинка статьи',
-        help_text='Добавьте картинку статьи',
     )
     group = models.ForeignKey(
         Group,
@@ -58,8 +54,6 @@ class Post(models.Model):
         blank=True,
         null=True,
         verbose_name='Группа статей',
-        help_text='Выберите тематическую группу '
-                  'в выпадающем списке по желанию',
     )
 
     class Meta:
@@ -77,25 +71,21 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         related_name='comments',
         verbose_name='Имя автора',
-        help_text='Укажите автора',
     )
     text = models.TextField(
         max_length=300,
         verbose_name='Текст комментария',
-        help_text='Укажите текст комментария',
     )
     created = models.DateTimeField(
         auto_now_add=True,
         db_index=True,
         verbose_name='Дата комментария',
-        help_text='Укажите дату комментария',
     )
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
         related_name='comments',
         verbose_name='Имя поста',
-        help_text='Укажите имя поста',
     )
 
     class Meta:
