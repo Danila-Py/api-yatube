@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import Comment, Group, Post
 
 
+@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('pk', 'text', 'pub_date', 'author')
     search_fields = ('text',)
@@ -10,6 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
+@admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
     list_display = ('pk', 'title', 'slug', 'description')
     list_display_links = ('title',)
@@ -17,13 +19,9 @@ class GroupAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
+@admin.register(Comment) 
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('pk', 'text', 'author', 'post', 'created')
     list_editable = ('text',)
     list_display_links = ('pk',)
     empty_value_display = '-пусто-'
-
-
-admin.site.register(Post, PostAdmin)
-admin.site.register(Group, GroupAdmin)
-admin.site.register(Comment, CommentAdmin)
